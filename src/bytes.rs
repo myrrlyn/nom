@@ -149,7 +149,7 @@ macro_rules! is_a (
 /// # Example
 /// ```
 /// # #[macro_use] extern crate nom;
-/// # use nom::alpha;
+/// # use crate::nom::alpha;
 /// # fn main() {
 ///  named!(esc, escaped!(call!(alpha), '\\', one_of!("\"n\\")));
 ///  assert_eq!(esc(&b"abcd;"[..]), Ok((&b";"[..], &b"abcd"[..])));
@@ -268,7 +268,7 @@ macro_rules! escaped (
 /// # Example
 /// ```ignore
 /// # #[macro_use] extern crate nom;
-/// # use nom::alpha;
+/// # use crate::nom::alpha;
 /// # use $crate::lib::std::str::from_utf8;
 /// # fn main() {
 /// fn to_s(i:Vec<u8>) -> String {
@@ -409,7 +409,7 @@ macro_rules! escaped_transform (
 /// # Example
 /// ```
 /// # #[macro_use] extern crate nom;
-/// # use nom::is_alphanumeric;
+/// # use crate::nom::is_alphanumeric;
 /// # fn main() {
 ///  named!( alpha, take_while!( is_alphanumeric ) );
 ///
@@ -439,8 +439,8 @@ macro_rules! take_while (
 /// # Example
 /// ```
 /// # #[macro_use] extern crate nom;
-/// # use nom::{Err,ErrorKind};
-/// # use nom::is_alphanumeric;
+/// # use crate::nom::{Err,ErrorKind};
+/// # use crate::nom::is_alphanumeric;
 /// # fn main() {
 ///  named!( alpha, take_while1!( is_alphanumeric ) );
 ///
@@ -475,7 +475,7 @@ macro_rules! take_while1 (
 /// # Example
 /// ```
 /// # #[macro_use] extern crate nom;
-/// # use nom::is_alphanumeric;
+/// # use crate::nom::is_alphanumeric;
 /// # fn main() {
 ///  named!( alpha, take_while!( is_alphanumeric ) );
 ///
@@ -582,7 +582,7 @@ macro_rules! take_till (
 /// # Example
 /// ```
 /// # #[macro_use] extern crate nom;
-/// # use nom::{Err,ErrorKind};
+/// # use crate::nom::{Err,ErrorKind};
 /// # fn main() {
 ///  named!( till1_colon, take_till1!(|ch| ch == b':') );
 ///
@@ -1056,7 +1056,7 @@ macro_rules! take_until_either1 (
 /// # Example
 /// ```
 /// # #[macro_use] extern crate nom;
-/// # use nom::be_u8;
+/// # use crate::nom::be_u8;
 /// # fn main() {
 ///  named!(with_length, length_bytes!( be_u8 ));
 ///  let r = with_length(&b"\x05abcdefgh"[..]);
@@ -1077,16 +1077,16 @@ macro_rules! length_bytes(
 
 #[cfg(test)]
 mod tests {
-  use internal::{Err, Needed};
-  use nom::{alpha, alphanumeric, digit, hex_digit, multispace, oct_digit, space};
-  use types::{CompleteByteSlice, CompleteStr};
-  use util::ErrorKind;
+  use crate::internal::{Err, Needed};
+  use crate::nom::{alpha, alphanumeric, digit, hex_digit, multispace, oct_digit, space};
+  use crate::types::{CompleteByteSlice, CompleteStr};
+  use crate::util::ErrorKind;
   #[cfg(feature = "alloc")]
   #[cfg(feature = "verbose-errors")]
-  use lib::std::string::String;
+  use crate::lib::std::string::String;
   #[cfg(feature = "alloc")]
   #[cfg(feature = "verbose-errors")]
-  use lib::std::vec::Vec;
+  use crate::lib::std::vec::Vec;
 
   macro_rules! one_of (
     ($i:expr, $inp: expr) => (
@@ -1652,7 +1652,7 @@ mod tests {
 
   #[test]
   fn take_while() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f, take_while!(is_alphabetic));
     let a = b"";
     let b = b"abcd";
@@ -1667,7 +1667,7 @@ mod tests {
 
   #[test]
   fn take_while1() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f, take_while1!(is_alphabetic));
     let a = b"";
     let b = b"abcd";
@@ -1685,7 +1685,7 @@ mod tests {
 
   #[test]
   fn take_while_m_n() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(x, take_while_m_n!(2, 4, is_alphabetic));
     let a = b"";
     let b = b"a";
@@ -1707,7 +1707,7 @@ mod tests {
 
   #[test]
   fn take_while_m_n_complete() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(x<CompleteByteSlice,CompleteByteSlice>, take_while_m_n!(2, 4, is_alphabetic));
     let a = CompleteByteSlice(b"");
     let b = CompleteByteSlice(b"a");
@@ -1741,7 +1741,7 @@ mod tests {
 
   #[test]
   fn take_while1_complete() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f<CompleteByteSlice, CompleteByteSlice>, take_while1!(is_alphabetic));
     let a = CompleteByteSlice(b"");
     let b = CompleteByteSlice(b"abcd");
@@ -1769,7 +1769,7 @@ mod tests {
 
   #[test]
   fn take_till() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f, take_till!(is_alphabetic));
     let a = b"";
     let b = b"abcd";
@@ -1784,7 +1784,7 @@ mod tests {
 
   #[test]
   fn take_till_complete() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f<CompleteByteSlice, CompleteByteSlice>, take_till!(is_alphabetic));
     let a = CompleteByteSlice(b"");
     let b = CompleteByteSlice(b"abcd");
@@ -1805,7 +1805,7 @@ mod tests {
 
   #[test]
   fn take_till1() {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f, take_till1!(is_alphabetic));
     let a = b"";
     let b = b"abcd";
@@ -1902,7 +1902,7 @@ mod tests {
   #[cfg(nightly)]
   #[bench]
   fn take_while_bench(b: &mut Bencher) {
-    use nom::is_alphabetic;
+    use crate::nom::is_alphabetic;
     named!(f, take_while!(is_alphabetic));
     b.iter(|| f(&b"abcdefghijklABCDEejfrfrjgro12aa"[..]));
   }
@@ -1910,7 +1910,7 @@ mod tests {
   #[test]
   #[cfg(feature = "std")]
   fn recognize_take_while() {
-    use nom::is_alphanumeric;
+    use crate::nom::is_alphanumeric;
     named!(x, take_while!(is_alphanumeric));
     named!(y, recognize!(x));
     assert_eq!(x(&b"ab."[..]), Ok((&b"."[..], &b"ab"[..])));
@@ -1920,7 +1920,7 @@ mod tests {
 
   #[test]
   fn length_bytes() {
-    use nom::le_u8;
+    use crate::nom::le_u8;
     named!(x, length_bytes!(le_u8));
     assert_eq!(x(b"\x02..>>"), Ok((&b">>"[..], &b".."[..])));
     assert_eq!(x(b"\x02.."), Ok((&[][..], &b".."[..])));

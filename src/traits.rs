@@ -1,28 +1,28 @@
 //! Traits input types have to implement to work with nom combinators
 //!
-use internal::{Err, IResult, Needed};
-use lib::std::ops::{Range, RangeFrom, RangeFull, RangeTo};
-use lib::std::iter::Enumerate;
-use lib::std::slice::Iter;
-use lib::std::iter::Map;
+use crate::internal::{Err, IResult, Needed};
+use crate::lib::std::ops::{Range, RangeFrom, RangeFull, RangeTo};
+use crate::lib::std::iter::Enumerate;
+use crate::lib::std::slice::Iter;
+use crate::lib::std::iter::Map;
 
-use lib::std::str::Chars;
-use lib::std::str::CharIndices;
-use lib::std::str::FromStr;
-use lib::std::str::from_utf8;
+use crate::lib::std::str::Chars;
+use crate::lib::std::str::CharIndices;
+use crate::lib::std::str::FromStr;
+use crate::lib::std::str::from_utf8;
 #[cfg(feature = "alloc")]
-use lib::std::string::String;
+use crate::lib::std::string::String;
 #[cfg(feature = "alloc")]
-use lib::std::vec::Vec;
+use crate::lib::std::vec::Vec;
 
 use memchr;
 
 #[cfg(feature = "verbose-errors")]
-use verbose_errors::Context;
+use crate::verbose_errors::Context;
 #[cfg(not(feature = "verbose-errors"))]
-use simple_errors::Context;
+use crate::simple_errors::Context;
 
-use util::ErrorKind;
+use crate::util::ErrorKind;
 
 /// abstract method to calculate the input length
 pub trait InputLength {
@@ -460,8 +460,8 @@ impl<'a> InputTake for &'a str {
 /// `InputTakeAtPosition` (like the one for `&[u8]`).
 pub trait UnspecializedInput {}
 
-use types::CompleteStr;
-use types::CompleteByteSlice;
+use crate::types::CompleteStr;
+use crate::types::CompleteByteSlice;
 
 /// methods to take as much input as possible until the provided function returns true for the current element
 ///

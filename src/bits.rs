@@ -369,9 +369,9 @@ macro_rules! tag_bits (
 
 #[cfg(test)]
 mod tests {
-  use lib::std::ops::{AddAssign, Shl, Shr};
-  use internal::{Err, Needed};
-  use util::ErrorKind;
+  use crate::lib::std::ops::{AddAssign, Shl, Shr};
+  use crate::internal::{Err, Needed};
+  use crate::util::ErrorKind;
 
   #[test]
   fn take_bits() {

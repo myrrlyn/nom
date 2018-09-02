@@ -828,8 +828,8 @@ macro_rules! sep (
   };
 );
 
-use internal::IResult;
-use traits::{AsChar, FindToken, InputTakeAtPosition};
+use crate::internal::IResult;
+use crate::traits::{AsChar, FindToken, InputTakeAtPosition};
 #[allow(unused_imports)]
 pub fn sp<'a, T>(input: T) -> IResult<T, T>
 where
@@ -897,11 +897,11 @@ macro_rules! ws (
 #[allow(dead_code)]
 mod tests {
   #[cfg(feature = "alloc")]
-  use lib::std::string::{String, ToString};
-  use internal::{Err, IResult, Needed};
+  use crate::lib::std::string::{String, ToString};
+  use crate::internal::{Err, IResult, Needed};
   use super::sp;
-  use util::ErrorKind;
-  use types::CompleteStr;
+  use crate::util::ErrorKind;
+  use crate::types::CompleteStr;
 
   #[test]
   fn spaaaaace() {
@@ -1074,7 +1074,7 @@ mod tests {
 
     #[allow(unused_variables)]
     fn dont_work(input: &[u8]) -> IResult<&[u8], &[u8], ErrorStr> {
-      use Context;
+      use crate::Context;
       Err(Err::Error(Context::Code(
         &b""[..],
         ErrorKind::Custom(ErrorStr("abcd".to_string())),

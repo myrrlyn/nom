@@ -1314,10 +1314,10 @@ macro_rules! recognize (
 
 #[cfg(test)]
 mod tests {
-  use internal::{Err, IResult, Needed};
-  use util::ErrorKind;
+  use crate::internal::{Err, IResult, Needed};
+  use crate::util::ErrorKind;
   #[cfg(feature = "alloc")]
-  use lib::std::boxed::Box;
+  use crate::lib::std::boxed::Box;
 
   // reproduce the tag and take macros, because of module import order
   macro_rules! tag (
@@ -1433,7 +1433,7 @@ mod tests {
     assert_eq!(opt_res_abcd(c), Err(Err::Incomplete(Needed::Size(4))));
   }
 
-  use lib::std::convert::From;
+  use crate::lib::std::convert::From;
   #[derive(Debug, PartialEq)]
   pub struct CustomError(&'static str);
   impl From<u32> for CustomError {
@@ -1502,7 +1502,7 @@ mod tests {
 
   #[test]
   fn not() {
-    use types::CompleteStr;
+    use crate::types::CompleteStr;
 
     named!(not_aaa<()>, not!(tag!("aaa")));
     assert_eq!(
@@ -1546,7 +1546,7 @@ mod tests {
 
   #[test]
   fn parse_to() {
-    use util::Convert;
+    use crate::util::Convert;
 
     assert_eq!(
       parse_to!("ab", usize),

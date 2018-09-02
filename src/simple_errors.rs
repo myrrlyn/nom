@@ -13,8 +13,8 @@
 //! you can know precisely which parser got to which part of the input.
 //! The main drawback is that it is a lot slower than default error
 //! management.
-use util::{Convert, ErrorKind};
-use lib::std::convert::From;
+use crate::util::{Convert, ErrorKind};
+use crate::lib::std::convert::From;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Context<I, E = u32> {

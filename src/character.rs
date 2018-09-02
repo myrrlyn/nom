@@ -1,9 +1,9 @@
 /// Character level parsers
 
-use internal::{IResult, Needed};
-use traits::{AsChar, InputIter, InputLength, Slice};
-use lib::std::ops::RangeFrom;
-use traits::{need_more, AtEof};
+use crate::internal::{IResult, Needed};
+use crate::traits::{AsChar, InputIter, InputLength, Slice};
+use crate::lib::std::ops::RangeFrom;
+use crate::traits::{need_more, AtEof};
 
 /// matches one of the provided characters
 ///
@@ -155,8 +155,8 @@ where
 
 #[cfg(test)]
 mod tests {
-  use internal::Err;
-  use util::ErrorKind;
+  use crate::internal::Err;
+  use crate::util::ErrorKind;
 
   #[test]
   fn one_of() {
@@ -208,7 +208,7 @@ mod tests {
     assert_eq!(f(b), Ok((&"de"[..], 'c')));
   }
 
-  use types::CompleteStr;
+  use crate::types::CompleteStr;
   #[test]
   fn complete_char() {
     named!(f<CompleteStr, char>, char!('c'));

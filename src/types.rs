@@ -1,19 +1,19 @@
 //! Custom input types
 //!
 
-use traits::{AsBytes, AtEof, Compare, CompareResult, FindSubstring, FindToken, InputIter, InputLength, InputTake, Offset, ParseTo, Slice};
+use crate::traits::{AsBytes, AtEof, Compare, CompareResult, FindSubstring, FindToken, InputIter, InputLength, InputTake, Offset, ParseTo, Slice};
 
 #[cfg(feature = "alloc")]
-use traits::ExtendInto;
+use crate::traits::ExtendInto;
 
-use lib::std::iter::{Enumerate, Map};
-use lib::std::ops::{Deref, Range, RangeFrom, RangeFull, RangeTo};
-use lib::std::slice::Iter;
-use lib::std::str::{self, CharIndices, Chars, FromStr};
-use lib::std::convert::From;
-use lib::std::fmt::{Display, Formatter, Result};
+use crate::lib::std::iter::{Enumerate, Map};
+use crate::lib::std::ops::{Deref, Range, RangeFrom, RangeFull, RangeTo};
+use crate::lib::std::slice::Iter;
+use crate::lib::std::str::{self, CharIndices, Chars, FromStr};
+use crate::lib::std::convert::From;
+use crate::lib::std::fmt::{Display, Formatter, Result};
 #[cfg(feature = "alloc")]
-use lib::std::string::String;
+use crate::lib::std::string::String;
 
 /// Holds a complete String, for which the `at_eof` method always returns true
 ///

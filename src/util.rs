@@ -1,16 +1,16 @@
 #[cfg(feature = "verbose-errors")]
 #[cfg(feature = "std")]
-use internal::{Err, IResult};
+use crate::internal::{Err, IResult};
 #[cfg(feature = "verbose-errors")]
-use verbose_errors::Context;
+use crate::verbose_errors::Context;
 
 #[cfg(feature = "std")]
 use std::collections::HashMap;
 
 #[cfg(feature = "alloc")]
-use lib::std::string::ToString;
+use crate::lib::std::string::ToString;
 #[cfg(feature = "alloc")]
-use lib::std::vec::Vec;
+use crate::lib::std::vec::Vec;
 
 #[cfg(feature = "std")]
 pub trait HexDisplay {
@@ -641,7 +641,7 @@ impl<E> ErrorKind<E> {
 }
 
 pub trait Convert<T> {
-  fn convert(T) -> Self;
+  fn convert(src: T) -> Self;
 }
 
 impl<F, E: From<F>> Convert<ErrorKind<F>> for ErrorKind<E> {

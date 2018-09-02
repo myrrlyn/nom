@@ -3,10 +3,10 @@
 use self::Needed::*;
 
 #[cfg(feature = "verbose-errors")]
-use verbose_errors::Context;
+use crate::verbose_errors::Context;
 
 #[cfg(not(feature = "verbose-errors"))]
-use simple_errors::Context;
+use crate::simple_errors::Context;
 
 /// Holds the result of parsing functions
 ///
@@ -117,7 +117,7 @@ where
   }
 }
 
-use util::Convert;
+use crate::util::Convert;
 
 impl<I, F, E: From<F>> Convert<Err<I, F>> for Err<I, E> {
   fn convert(e: Err<I, F>) -> Self {
@@ -130,9 +130,9 @@ impl<I, F, E: From<F>> Convert<Err<I, F>> for Err<I, E> {
 }
 
 impl<I, E> Err<I, E> {
-  pub fn into_error_kind(self) -> ::util::ErrorKind<E> {
+  pub fn into_error_kind(self) -> crate::util::ErrorKind<E> {
     match self {
-      Err::Incomplete(_) => ::util::ErrorKind::Complete,
+      Err::Incomplete(_) => crate::util::ErrorKind::Complete,
       Err::Failure(c) => c.into_error_kind(),
       Err::Error(c) => c.into_error_kind(),
     }

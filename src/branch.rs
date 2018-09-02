@@ -854,9 +854,9 @@ macro_rules! permutation_iterator (
 #[cfg(test)]
 mod tests {
   #[cfg(feature = "alloc")]
-  use lib::std::string::{String, ToString};
-  use internal::{Err, IResult, Needed};
-  use util::ErrorKind;
+  use crate::lib::std::string::{String, ToString};
+  use crate::internal::{Err, IResult, Needed};
+  use crate::util::ErrorKind;
 
   // reproduce the tag and take macros, because of module import order
   macro_rules! tag (
@@ -945,7 +945,7 @@ mod tests {
 
     #[allow(unused_variables)]
     fn dont_work(input: &[u8]) -> IResult<&[u8], &[u8], ErrorStr> {
-      use Context;
+      use crate::Context;
       Err(Err::Error(Context::Code(
         &b""[..],
         ErrorKind::Custom(ErrorStr("abcd".to_string())),

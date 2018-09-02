@@ -7,17 +7,17 @@
 //!
 
 #[cfg(feature = "alloc")]
-use lib::std::boxed::Box;
+use crate::lib::std::boxed::Box;
 
 #[cfg(feature = "std")]
-use lib::std::fmt::Debug;
-use internal::*;
-use traits::{AsChar, InputIter, InputLength, InputTakeAtPosition};
-use traits::{need_more, need_more_err, AtEof};
-use lib::std::ops::{Range, RangeFrom, RangeTo};
-use traits::{Compare, CompareResult, Offset, Slice};
-use util::ErrorKind;
-use lib::std::mem::transmute;
+use crate::lib::std::fmt::Debug;
+use crate::internal::*;
+use crate::traits::{AsChar, InputIter, InputLength, InputTakeAtPosition};
+use crate::traits::{need_more, need_more_err, AtEof};
+use crate::lib::std::ops::{Range, RangeFrom, RangeTo};
+use crate::traits::{Compare, CompareResult, Offset, Slice};
+use crate::util::ErrorKind;
+use crate::lib::std::mem::transmute;
 
 #[cfg(feature = "alloc")]
 #[inline]
@@ -767,8 +767,8 @@ pub fn double_s(input: &str) -> IResult<&str, f64> {
 #[cfg(test)]
 mod tests {
   use super::*;
-  use internal::{Err, IResult, Needed};
-  use types::{CompleteByteSlice, CompleteStr};
+  use crate::internal::{Err, IResult, Needed};
+  use crate::types::{CompleteByteSlice, CompleteStr};
 
   #[test]
   #[cfg(feature = "alloc")]
@@ -978,7 +978,7 @@ mod tests {
     assert_eq!(space(e), Err(Err::Incomplete(Needed::Size(1))));
   }
 
-  use traits::Offset;
+  use crate::traits::Offset;
   #[test]
   fn offset() {
     let a = &b"abcd;"[..];
@@ -1091,7 +1091,7 @@ mod tests {
   #[test]
   #[cfg(feature = "alloc")]
   fn buffer_with_size() {
-    use lib::std::vec::Vec;
+    use crate::lib::std::vec::Vec;
     let i: Vec<u8> = vec![7, 8];
     let o: Vec<u8> = vec![4, 5, 6];
     //let arr:[u8; 6usize] = [3, 4, 5, 6, 7, 8];
@@ -1403,7 +1403,7 @@ mod tests {
     assert_eq!(int_parse(&[0x80, 0x00]), Ok((&b""[..], 128_u16)));
   }
 
-  use lib::std::convert::From;
+  use crate::lib::std::convert::From;
   impl From<u32> for CustomError {
     fn from(_: u32) -> Self {
       CustomError

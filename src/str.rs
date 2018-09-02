@@ -249,7 +249,7 @@ macro_rules! take_until_s (
 
 #[cfg(test)]
 mod test {
-  use {Err, ErrorKind, IResult};
+  use crate::{Err, ErrorKind, IResult};
 
   #[test]
   fn tag_str_succeed() {
@@ -387,7 +387,7 @@ mod test {
     }
   }
 
-  use internal::Needed;
+  use crate::internal::Needed;
 
   pub fn is_alphabetic(c: char) -> bool {
     (c as u8 >= 0x41 && c as u8 <= 0x5A) || (c as u8 >= 0x61 && c as u8 <= 0x7A)

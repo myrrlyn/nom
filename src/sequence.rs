@@ -438,9 +438,9 @@ macro_rules! do_parse (
 
 #[cfg(test)]
 mod tests {
-  use internal::{Err, IResult, Needed};
-  use util::ErrorKind;
-  use nom::be_u16;
+  use crate::internal::{Err, IResult, Needed};
+  use crate::util::ErrorKind;
+  use crate::nom::be_u16;
   #[cfg(feature = "alloc")]
   #[cfg(feature = "verbose-errors")]
   use lib::std::vec::Vec;
@@ -933,7 +933,7 @@ mod tests {
   #[cfg_attr(rustfmt, rustfmt_skip)]
   #[test]
   fn do_parse_dependency() {
-    use nom::be_u8;
+    use crate::nom::be_u8;
 
     named!(length_value,
       do_parse!(

@@ -1037,12 +1037,12 @@ macro_rules! fold_many_m_n(
 
 #[cfg(test)]
 mod tests {
-  use internal::{Err, IResult, Needed};
-  use nom::{digit, be_u16, be_u8, le_u16};
-  use lib::std::str::{self, FromStr};
+  use crate::internal::{Err, IResult, Needed};
+  use crate::nom::{digit, be_u16, be_u8, le_u16};
+  use crate::lib::std::str::{self, FromStr};
   #[cfg(feature = "alloc")]
-  use lib::std::vec::Vec;
-  use util::ErrorKind;
+  use crate::lib::std::vec::Vec;
+  use crate::util::ErrorKind;
 
   // reproduce the tag and take macros, because of module import order
   macro_rules! tag (
@@ -1135,7 +1135,7 @@ mod tests {
   #[test]
   #[cfg(feature = "alloc")]
   fn separated_list_complete() {
-    use nom::alpha;
+    use crate::nom::alpha;
 
     named!(multi<&[u8],Vec<&[u8]> >, separated_list_complete!(tag!(","), alpha));
     let a = &b"abcdef;"[..];
@@ -1193,7 +1193,7 @@ mod tests {
   #[test]
   #[cfg(feature = "alloc")]
   fn separated_nonempty_list_complete() {
-    use nom::alpha;
+    use crate::nom::alpha;
 
     named!(multi<&[u8],Vec<&[u8]> >, separated_nonempty_list_complete!(tag!(","), alpha));
     let a = &b"abcdef;"[..];
