@@ -216,6 +216,7 @@ macro_rules! delimited(
   ($i:expr, $submac:ident!( $($args:tt)* ), $($rest:tt)+) => (
     {
       use $crate::lib::std::result::Result::*;
+      use $crate::tuple_parser;
 
       match tuple_parser!($i, (), $submac!($($args)*), $($rest)*) {
         Err(e) => Err(e),

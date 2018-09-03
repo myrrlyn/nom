@@ -177,12 +177,14 @@ macro_rules! alt (
       )
     ");
   );
-  (__impl $i:expr, $e:path, $($rest:tt)* ) => (
+  (__impl $i:expr, $e:path, $($rest:tt)* ) => ({
+    use $crate::call;
     alt!(__impl $i, call!($e) , $($rest)*);
-  );
-  (__impl $i:expr, $e:path | $($rest:tt)*) => (
-    alt!(__impl $i, call!($e) | $($rest)*);
-  );
+  });
+  (__impl $i:expr, $e:path | $($rest:tt)*) => ({
+    use $crate::call;
+    alt!(__impl $i, call!($e) | $($rest)*)
+  });
 
   (__impl $i:expr, $subrule:ident!( $($args:tt)*) | $($rest:tt)*) => (
     {

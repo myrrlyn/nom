@@ -602,9 +602,10 @@ macro_rules! take_till1 (
       input.split_at_position1(|c| $submac!(c, $($args)*), ErrorKind::TakeTill1)
     }
   );
-  ($input:expr, $f:expr) => (
-    take_till1!($input, call!($f));
-  );
+  ($input:expr, $f:expr) => ({
+    use $crate::call;
+    take_till1!($input, call!($f))
+  });
 );
 
 /// `take!(nb) => &[T] -> IResult<&[T], &[T]>`
