@@ -43,9 +43,10 @@ macro_rules! tuple (
 #[doc(hidden)]
 #[macro_export]
 macro_rules! tuple_parser (
-  ($i:expr, ($($parsed:tt),*), $e:path, $($rest:tt)*) => (
-    tuple_parser!($i, ($($parsed),*), call!($e), $($rest)*);
-  );
+  ($i:expr, ($($parsed:tt),*), $e:path, $($rest:tt)*) => ({
+    use $crate::call;
+    tuple_parser!($i, ($($parsed),*), call!($e), $($rest)*)
+  });
   ($i:expr, (), $submac:ident!( $($args:tt)* ), $($rest:tt)*) => (
     {
       let i_ = $i.clone();
@@ -66,9 +67,10 @@ macro_rules! tuple_parser (
       })
     }
   );
-  ($i:expr, ($($parsed:tt),*), $e:path) => (
-    tuple_parser!($i, ($($parsed),*), call!($e));
-  );
+  ($i:expr, ($($parsed:tt),*), $e:path) => ({
+    use $crate::call;
+    tuple_parser!($i, ($($parsed),*), call!($e))
+  });
   ($i:expr, (), $submac:ident!( $($args:tt)* )) => (
     {
       let i_ = $i.clone();
