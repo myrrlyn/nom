@@ -33,6 +33,7 @@
 macro_rules! tuple (
   ($i:expr, $($rest:tt)*) => (
     {
+      use $crate::tuple_parser;
       tuple_parser!($i, (), $($rest)*)
     }
   );
